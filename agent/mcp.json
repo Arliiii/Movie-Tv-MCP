@@ -1,0 +1,19 @@
+{
+  "mcpServers": {
+    "moviemcp": {
+      "command": "cmd",
+      "args": [
+        "/c",
+        "npx",
+        "-y",
+        "@smithery/cli@latest",
+        "run",
+        "@Arliiii/moviemcp",
+        "--key",
+        "58a382f4-573d-4018-b2a7-69ba0a484468",
+        "--profile",
+        "noisy-primate-zh17mp"
+      ]
+    }
+  }
+}
