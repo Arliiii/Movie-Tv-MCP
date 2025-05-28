@@ -1,0 +1,37 @@
+startCommand:
+  type: stdio
+  configSchema:
+    type: object
+    required: ["apiKey"]
+    properties:
+      apiKey:
+        type: string
+        title: "TMDb API Key"
+        description: "Get your free API key from https://www.themoviedb.org/settings/api"
+      includeAdult:
+        type: boolean
+        title: "Include Adult Content"
+        default: false
+        description: "Include adult/mature content in search results"
+      defaultLanguage:
+        type: string
+        title: "Default Language"
+        default: "en-US"
+        description: "Default language for content (en-US, es-ES, fr-FR, etc.)"
+      timeout:
+        type: number
+        title: "API Timeout (seconds)"
+        default: 10
+        minimum: 5
+        maximum: 30
+  commandFunction: |-
+    (config) => ({
+      "command": "python",
+      "args": ["movie_server.py"],
+      "env": {
+        "TMDB_API_KEY": config.apiKey,
+        "INCLUDE_ADULT": config.includeAdult ? "true" : "false",
+        "DEFAULT_LANGUAGE": config.defaultLanguage || "en-US",
+        "API_TIMEOUT": config.timeout ? config.timeout.toString() : "10"
+      }
+    })
